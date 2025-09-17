@@ -1,0 +1,326 @@
+/* Base text */
+body {
+  font-family: 'DM Mono', sans-serif;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(3rem, 6vw, 8rem);
+  margin: 50px auto;
+  color: black;
+}
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  color: black;
+  font-size: clamp(2rem, 4vw, 8rem);
+}
+
+p {
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(1rem, 6vw, 2rem);
+}
+
+/* Nav */
+
+.nav {
+  display: flex;
+  align-items: center;       /* keeps text & images vertically centered */
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 40px;        /* spacing instead of fixed height */
+  box-sizing: border-box;
+  z-index: 1000;
+  background: white;         /* ensures it's visible on scroll */
+}
+
+.nav a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  line-height: 1;
+}
+
+.nav img {
+  height: clamp(40px, 8vw, 80px); /* responsive size */
+  width: auto;                   /* keep proportions */
+  display: block;
+}
+
+.site-title {
+  font-size: clamp(2rem, 4vw, 8rem);
+  font-weight: bold;
+  margin: 0;
+  line-height: 1;
+}
+
+
+
+/* Hero section */
+.hello-row {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+}
+
+.portrait {
+  width: clamp(130px, 20vw, 250px);
+  border-radius: 70%;
+}
+
+.greeting {
+  font-size: clamp(3rem, 8vw, 8rem);
+}
+
+/* About */
+.hello-row {
+  min-height: 100vh;          /* full viewport height */
+  display: flex;              /* flexbox layout */
+  justify-content: center;    /* center the whole block horizontally */
+  align-items: center;        /* center items vertically */
+  gap: 20px;                  /* space between portrait and text */
+  text-align: center;
+}
+
+.profile-picture {
+  flex: 0;                    /* don’t stretch */
+}
+
+.portrait {
+  width: 250px;               /* fixed size */
+  border-radius: 50%;         /* perfectly round */
+}
+
+.greeting {
+  flex: 0;                    /* shrink to fit text */
+  margin: 0;                  /* remove extra margins */
+}
+
+.greeting h1 {
+  margin: 0;                  /* remove default h1 margin */
+}
+
+/* About */
+.about-row {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.about-text {
+  max-width: 60%;
+  line-height: 1.5;
+}
+
+
+/* Projects */
+.project-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.project {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.project .visual {
+  flex: 1;
+  min-width: 300px;
+  height: 100vh;
+  background-size: 80%;
+  background-position: center;
+  border-radius: 50px;
+}
+
+.project .info {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project img {
+  width: clamp(200px, 30vw, 650px);
+  opacity: 0.9;
+}
+
+
+/* OVERLAYS */
+
+.project .visual {
+  display: block;             /* ensure link behaves as a block */
+  position: relative;         
+  flex: 1;
+  min-width: 300px;
+  height: 100vh;
+  background-size: 80%;
+  background-position: center;
+  border-radius: 50px;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;      /* remove underline for link */
+  color: inherit;             /* inherit text color */
+}
+
+
+/* Dark overlay */
+.project .visual::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);   /* semi-transparent black */
+  opacity: 0;                    /* hidden by default */
+  transition: opacity 0.3s ease;
+   z-index: 1;
+}
+
+/* Text */
+.project .visual .hover-text {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  opacity: 0;                    /* hidden */
+  transition: opacity 0.3s ease;
+  pointer-events: none;          /* don’t block hover */
+   z-index: 2;
+}
+
+/* On hover → show overlay + text */
+.project .visual:hover::after {
+  opacity: 1;
+}
+
+.project .visual:hover .hover-text {
+  opacity: 1;
+}
+
+.hover-text{
+  font-family: 'DM Mono';
+  font-size:3rem;
+}
+
+
+
+
+
+
+/* Assign background images */
+.project.branding .visual { background-image: url(Images/thumbnail-iyou.png); }
+.project.video .visual { background-image: url(Images/thumbnail-video.png); }
+.project.product .visual { background-image: url(Images/thumbnail-gn.png); opacity: 0.8; }
+
+/* Footer */
+.contact {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+
+/* Individual project pages: shared for branding & product */
+.page-project {
+  display: flex;              /* side by side */
+  min-height: 100vh;          /* full viewport height */
+  align-items: center;        /* vertically center */
+  justify-content: center;
+  gap: 20px;                  /* space between visual and text */
+  padding: 20px;
+  box-sizing: border-box;
+  flex-wrap: wrap;            /* allows stacking on narrow screens */
+}
+
+/* Left side: visual (image or video) */
+.page-project .visual {
+  flex: 1;                    /* take equal width */
+  min-width: 300px;           /* prevents too narrow */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 20px;        /* optional rounded corners */
+}
+
+.page-project .visual p {
+  position: absolute;        /* place it on top of the image */
+  bottom: 20px;              /* distance from bottom */
+  left: 20px;                /* distance from left */
+  color: white;              /* readable on image */
+  font-size: clamp(1rem, 2vw, 1.5rem); /* responsive text */
+  text-align: left;
+  z-index: 2;                /* above the image */
+  margin: 0;
+  background: rgba(0,0,0,0.4); /* optional semi-transparent background */
+  padding: 5px 10px;          /* some padding around text */
+  border-radius: 5px;         /* rounded corners for readability */
+}
+
+
+
+.page-project .visual img,
+.page-project .visual video {
+  width: 100%;                /* fill container */
+  height: auto;               /* maintain aspect ratio */
+  object-fit: cover;          /* cover for videos/images */
+  border-radius: 20px;
+}
+
+/* Right side: text/info */
+.page-project .info {
+  flex: 1;                    /* take equal width */
+  min-width: 300px;           /* prevents too narrow */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  padding: 200px;
+}
+
+.page-project .info p {
+  font-size: clamp(1.5rem, 2.5vw, 3rem); /* responsive text */
+  line-height: 1.5;
+}
+
+/* Responsive: stack vertically on narrow screens */
+@media (max-width: 1200px) {
+  .page-project {
+    flex-direction: column;
+  }
+
+  .page-project .info {
+    text-align: center;
+    padding: 10px;
+  }
+
+  .page-project .visual img,
+  .page-project .visual video {
+    height: 50vh; /* smaller height on mobile */
+  }
+}
